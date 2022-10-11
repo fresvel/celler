@@ -1,0 +1,35 @@
+CREATE DATABASE CELLAR;
+USE CELLAR
+
+
+CREATE TABLE Proveedores(
+Cedula VARCHAR(10) PRIMARY KEY,
+Nombres VARCHAR(50),
+Apellidos VARCHAR(50),
+Empresa VARCHAR(25),
+Telefono VARCHAR(10),
+Correo VARCHAR(50),
+Tipo BOOLEAN NOT NULL
+);
+
+
+CREATE TABLE Inventario(
+    IdProducto VARCHAR(15) PRIMARY KEY,
+    Grupo VARCHAR(20) NOT NULL,
+    Cantidad INT NOT NULL,
+    Precio DOUBLE NOT NULL,
+    Estado VARCHAR(15)
+);
+
+CREATE TABLE Pedidos(
+Id VARCHAR (10) PRIMARY KEY,
+Proveedor VARCHAR(10) NOT NULL,
+Ingrediente VARCHAR (15) NOT NULL,
+Cantidad INT NOT NULL,
+Precio DOUBLE NOT NULL,
+Estado VARCHAR(1) NOT NULL,
+Fecha DATE DEFAULt CURRENT_TIMESTAMP,
+CONSTRAINT fk_Proveedor FOREIGN KEY (Proveedor) REFERENCES Proveedores(Cedula),
+CONSTRAINT fk_Ingrediente FOREIGN KEY (Ingrediente) REFERENCES Inventario(Grupo)
+);
+
